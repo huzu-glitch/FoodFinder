@@ -1,0 +1,114 @@
+
+:root {
+
+  --primary-blue: #5264AE;
+  --light-blue: #3B82F6;
+  --dark-gray: #323b40;
+  --medium-gray: #4f585e;
+  --teal: #0096a1;
+  --teal-light: #0ebac7;
+  --text-gray: #6B7280;
+  --border-gray: #515151;
+  --white: #FFFFFF;
+  --background-light: #f5f5f5;
+
+
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  --animation-delay: 0.05s;
+
+  --header-padding-x: 5rem;
+  --header-padding-y: 2.5rem;
+  --card-padding: 1rem;
+  --button-padding-x: 1.5rem;
+  --button-padding-y: 0.75rem;
+
+
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+
+  --z-header: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
+}
+
+
+:root {
+
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 600px;
+  --breakpoint-lg: 768px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-2xl: 1200px;
+  --breakpoint-3xl: 1440px;
+
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+}
+
+
+@media (max-width: 1199px) {
+  :root {
+    --header-padding-x: 3rem;
+    --header-padding-y: 2rem;
+    --card-padding: 1.25rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-padding-x: 2rem;
+    --header-padding-y: 1.5rem;
+    --card-padding: 1.125rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-padding-x: 1.5rem;
+    --header-padding-y: 1.25rem;
+    --card-padding: 1rem;
+  }
+}
+
+@media (max-width: 599px) {
+  :root {
+    --header-padding-x: 1.25rem;
+    --header-padding-y: 1rem;
+    --card-padding: 1rem;
+  }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --header-padding-x: 1rem;
+    --header-padding-y: 0.875rem;
+    --card-padding: 0.875rem;
+  }
+}
+
+@media (max-width: 319px) {
+  :root {
+    --header-padding-x: 0.75rem;
+    --header-padding-y: 0.75rem;
+    --card-padding: 0.75rem;
+  }
+}

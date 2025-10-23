@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import RecipeCard from '../components/RecipeCard';
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -34,36 +34,47 @@ function Favorites() {
     }
   };
 
-  if (loading) return <div className="container">Loading...</div>;
+  if (loading) return (
+    <div className="page-container">
+      <div className="container">
+        <div className="loading-state">Loading...</div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="container">
-      <h1>My Favorite Recipes</h1>
-      {favorites.length === 0 ? (
-        <p>No favorites yet. Start searching for recipes!</p>
-      ) : (
-        <div className="recipes-grid">
-          {favorites.map((fav) => (
-            <div key={fav.recipe_id} className="recipe-card">
-              <img src={fav.image_url} alt={fav.title} />
-              <div className="recipe-card-content">
-                <h3>{fav.title}</h3>
-                <div className="recipe-card-actions">
-                  <Link to={`/recipe/${fav.recipe_id}`} className="btn btn-sm">
-                    View Details
-                  </Link>
-                  <button 
-                    onClick={() => handleRemove(fav.recipe_id)} 
-                    className="btn btn-sm btn-danger"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+    <div className="page-container">
+      <div className="container">
+        <div className="page-header">
+          <h1>My Favorite Recipes</h1>
         </div>
-      )}
+        {favorites.length === 0 ? (
+          <div className="empty-state">
+            <p>No favorites yet. Start searching for recipes!</p>
+          </div>
+        ) : (
+          <div className="recipes-grid">
+            {favorites.map((fav) => {
+              // Transform favorite data to match RecipeCard expected format
+              const recipeData = {
+                id: fav.recipe_id,
+                title: fav.title,
+                image: fav.image_url,
+                description: fav.description || 'One of your favorite recipes'
+              };
+              return (
+                <RecipeCard 
+                  key={fav.recipe_id} 
+                  recipe={recipeData} 
+                  user={true} 
+                  showRemoveFromFavorites={true}
+                  onRemoveFromFavorites={() => handleRemove(fav.recipe_id)}
+                />
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

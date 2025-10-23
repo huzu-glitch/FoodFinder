@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,13 +6,16 @@ import {
   Navigate,
 } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Favorites from "./pages/Favorites";
-import RecipeDetail from "./pages/RecipeDetail";
-import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Favorites from "./Pages/Favorites";
+import RecipeDetail from "./Pages/RecipeDetail";
+import BrowserTest from "./Pages/BrowserTest";
+import { BrowserDetection } from "./utils/browserDetection";
+import "./styles/globals.css";
 
 axios.defaults.withCredentials = true;
 
@@ -21,6 +24,14 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize browser detection and apply compatibility classes
+    BrowserDetection.applyBrowserClasses();
+    
+    // Log browser info in development
+    if (import.meta.env?.DEV) {
+      BrowserDetection.logBrowserInfo();
+    }
+    
     checkAuth();
   }, []);
 
@@ -53,8 +64,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar user={user} onLogout={handleLogout} />
-        <Routes>
+        <Header user={user} onLogout={handleLogout} />
+        <main id="main-content" className="main-content">
+          <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route
             path="/login"
@@ -69,7 +81,10 @@ function App() {
             element={user ? <Favorites /> : <Navigate to="/login" />}
           />
           <Route path="/recipe/:id" element={<RecipeDetail user={user} />} />
-        </Routes>
+          <Route path="/browser-test" element={<BrowserTest />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </Router>
   );

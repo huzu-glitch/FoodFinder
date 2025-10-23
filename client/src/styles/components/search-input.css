@@ -1,0 +1,309 @@
+/* Wave Animation Search Input Component */
+
+.wave-group {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.wave-input {
+  width: 100%;
+  padding: 12px 0 8px 0;
+  font-size: 16px;
+  color: var(--text-gray);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-gray);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.wave-input:focus {
+  border-bottom-color: var(--primary-blue);
+}
+
+.wave-bar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary-blue);
+  transition: all var(--transition-fast);
+  transform: translateX(-50%);
+}
+
+.wave-group.focused .wave-bar {
+  width: 100%;
+}
+
+.wave-label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-size: 16px;
+  color: var(--border-gray);
+  pointer-events: none;
+  transition: all var(--transition-fast);
+  transform-origin: left center;
+}
+
+.wave-group.focused .wave-label {
+  top: -8px;
+  font-size: 12px;
+  color: var(--primary-blue);
+  transform: scale(0.85);
+}
+
+.wave-label-char {
+  display: inline-block;
+  transition: all var(--transition-fast);
+  animation-fill-mode: both;
+}
+
+.wave-group.focused .wave-label-char {
+  animation: wave-char-float 0.3s ease-out;
+}
+
+/* Optimized animation using translate3d for better performance */
+@keyframes wave-char-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Responsive design */
+
+/* Large Desktop (1200px+) - Default styles apply */
+
+/* Desktop/Laptop (1024px - 1199px) */
+@media (max-width: 1199px) {
+  .wave-group {
+    width: 280px;
+  }
+  
+  .wave-input {
+    font-size: 15px;
+  }
+  
+  .wave-label {
+    font-size: 15px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 11.5px;
+  }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (max-width: 1023px) {
+  .wave-group {
+    width: 260px;
+  }
+  
+  .wave-input {
+    font-size: 15px;
+    padding: 11px 0 7px 0;
+  }
+  
+  .wave-label {
+    font-size: 15px;
+    top: 11px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 11px;
+    top: -7px;
+  }
+}
+
+/* Tablet Portrait (600px - 767px) */
+@media (max-width: 767px) {
+  .wave-group {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .wave-input {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 12px 0 8px 0;
+  }
+  
+  .wave-label {
+    font-size: 16px;
+    top: 12px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 12px;
+    top: -8px;
+  }
+  
+  .wave-bar {
+    height: 2px;
+  }
+}
+
+/* Mobile Large (480px - 599px) */
+@media (max-width: 599px) {
+  .wave-group {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .wave-input {
+    font-size: 16px;
+    padding: 14px 0 10px 0;
+  }
+  
+  .wave-label {
+    font-size: 16px;
+    top: 14px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 12px;
+    top: -6px;
+  }
+}
+
+/* Mobile Small (320px - 479px) */
+@media (max-width: 479px) {
+  .wave-group {
+    width: 100%;
+    max-width: 260px;
+  }
+  
+  .wave-input {
+    font-size: 16px;
+    padding: 12px 0 8px 0;
+  }
+  
+  .wave-label {
+    font-size: 16px;
+    top: 12px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 11px;
+    top: -7px;
+  }
+}
+
+/* Extra Small Mobile (below 320px) */
+@media (max-width: 319px) {
+  .wave-group {
+    width: 100%;
+    max-width: 240px;
+  }
+  
+  .wave-input {
+    font-size: 15px;
+    padding: 10px 0 6px 0;
+  }
+  
+  .wave-label {
+    font-size: 15px;
+    top: 10px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 10px;
+    top: -8px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .wave-input {
+    min-height: 44px; /* Touch-friendly minimum size */
+    padding: 16px 0 12px 0;
+  }
+  
+  .wave-label {
+    top: 16px;
+  }
+  
+  .wave-group.focused .wave-label {
+    top: -4px;
+  }
+  
+  /* Increase touch target for better usability */
+  .wave-group::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .wave-input {
+    border-bottom-width: 2px;
+  }
+  
+  .wave-bar {
+    height: 3px;
+  }
+  
+  .wave-group.focused .wave-input {
+    border-bottom-width: 2px;
+  }
+}
+
+/* Accessibility - Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .wave-label-char {
+    animation: none !important;
+  }
+  
+  .wave-bar,
+  .wave-label,
+  .wave-input {
+    transition: none;
+  }
+  
+  /* Provide instant feedback without animation */
+  .wave-group.focused .wave-label {
+    transform: scale(0.85) translateY(-20px);
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+  .wave-group {
+    max-width: 240px;
+  }
+  
+  .wave-input {
+    font-size: 14px;
+    padding: 8px 0 4px 0;
+  }
+  
+  .wave-label {
+    font-size: 14px;
+    top: 8px;
+  }
+  
+  .wave-group.focused .wave-label {
+    font-size: 10px;
+    top: -10px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .wave-group {
+    display: none;
+  }
+}

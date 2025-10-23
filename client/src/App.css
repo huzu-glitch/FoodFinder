@@ -17,6 +17,12 @@ body {
 
 .App {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
 }
 
 /* Navbar */
@@ -101,6 +107,13 @@ body {
   gap: 1rem;
   max-width: 600px;
   margin: 0 auto;
+  align-items: center;
+}
+
+.search-button-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .search-input {
@@ -207,4 +220,8 @@ body {
 .recipe-detail {
   background: white;
   border-radius: 8px;
-  padding:
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}

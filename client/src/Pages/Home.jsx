@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import RecipeCard from "../components/RecipeCard";
+import SearchInput from "../components/SearchInput";
+import Loading from "../components/Loading";
 
 function Home({ user }) {
   const [query, setQuery] = useState("");
@@ -9,7 +11,9 @@ function Home({ user }) {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     if (!query.trim()) return;
 
     setLoading(true);
@@ -31,29 +35,45 @@ function Home({ user }) {
   };
 
   return (
-    <div className="container">
-      <div className="search-section">
-        <h1>Find Your Perfect Recipe</h1>
-        <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for recipes..."
-            className="search-input"
-          />
-          <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? "Searching..." : "Search"}
-          </button>
-        </form>
-      </div>
+    <div className="page-container">
+      <div className="container">
+        <div className="search-section">
+          <h1>Find Your Perfect Recipe</h1>
+          <div className="search-form">
+            <SearchInput
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onSubmit={handleSearch}
+              placeholder="Search for recipes..."
+            />
+            <div className="search-button-container">
+              <button 
+                type="button" 
+                onClick={handleSearch} 
+                className="btn btn-primary" 
+                disabled={loading || !query.trim()}
+              >
+                {loading ? "Searching..." : "Search"}
+              </button>
+              {loading && query.trim() && (
+                <Loading 
+                  size="small" 
+                  type="spinner" 
+                  className="loading-inline" 
+                  show={loading}
+                />
+              )}
+            </div>
+          </div>
+        </div>
 
-      {message && <p className="message">{message}</p>}
+        {message && <p className="message">{message}</p>}
 
-      <div className="recipes-grid">
-        {results.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} user={user} />
-        ))}
+        <div className="recipes-grid">
+          {results.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} user={user} />
+          ))}
+        </div>
       </div>
     </div>
   );

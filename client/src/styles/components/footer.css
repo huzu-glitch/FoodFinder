@@ -1,0 +1,283 @@
+/* Footer Component Styles */
+.footer {
+  background-color: #323b40;
+  padding: 2rem 0;
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.footer-social-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--teal);
+  color: var(--white);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all var(--transition-medium);
+  box-shadow: var(--shadow-md);
+  border: none;
+  cursor: pointer;
+}
+
+.footer-social-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-social-button:focus {
+  outline: 2px solid var(--teal-light);
+  outline-offset: 2px;
+}
+
+.footer-social-button:active {
+  transform: translateY(-2px);
+}
+
+.footer-social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Social button specific hover effects with glow */
+.footer-social-button--github:hover {
+  background-color: #333;
+  filter: drop-shadow(0 0 15px rgba(51, 51, 51, 0.6)) brightness(1.1);
+}
+
+.footer-social-button--linkedin:hover {
+  background-color: #0077b5;
+  filter: drop-shadow(0 0 15px rgba(0, 119, 181, 0.6)) brightness(1.1);
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1200px+) - Default styles apply */
+
+/* Desktop/Laptop (1024px - 1199px) */
+@media (max-width: 1199px) {
+  .footer {
+    padding: 1.875rem 0;
+  }
+  
+  .footer-container {
+    gap: 1.875rem;
+    padding: 0 1.5rem;
+  }
+  
+  .footer-social-button {
+    width: 2.875rem;
+    height: 2.875rem;
+  }
+  
+  .footer-social-icon {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (max-width: 1023px) {
+  .footer {
+    padding: 1.75rem 0;
+  }
+  
+  .footer-container {
+    gap: 1.75rem;
+    padding: 0 1.25rem;
+  }
+  
+  .footer-social-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  
+  .footer-social-icon {
+    width: 1.3125rem;
+    height: 1.3125rem;
+  }
+}
+
+/* Tablet Portrait (600px - 767px) */
+@media (max-width: 767px) {
+  .footer {
+    padding: 1.5rem 0;
+  }
+  
+  .footer-container {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .footer-social-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-height: 44px; /* Touch-friendly minimum */
+    min-width: 44px;
+  }
+  
+  .footer-social-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Mobile Large (480px - 599px) */
+@media (max-width: 599px) {
+  .footer {
+    padding: 1.25rem 0;
+  }
+  
+  .footer-container {
+    gap: 1.25rem;
+    padding: 0 0.875rem;
+  }
+  
+  .footer-social-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-height: 48px; /* Larger touch targets */
+    min-width: 48px;
+  }
+  
+  .footer-social-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Mobile Small (320px - 479px) */
+@media (max-width: 479px) {
+  .footer {
+    padding: 1rem 0;
+  }
+  
+  .footer-container {
+    gap: 1rem;
+    padding: 0 0.75rem;
+  }
+  
+  .footer-social-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .footer-social-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+/* Extra Small Mobile (below 320px) */
+@media (max-width: 319px) {
+  .footer {
+    padding: 0.875rem 0;
+  }
+  
+  .footer-container {
+    gap: 0.875rem;
+    padding: 0 0.625rem;
+  }
+  
+  .footer-social-button {
+    width: 2rem;
+    height: 2rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .footer-social-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .footer-social-button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .footer-social-button:hover {
+    transform: none; /* Disable hover transforms on touch devices */
+  }
+  
+  /* Add active states for touch feedback */
+  .footer-social-button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+  .footer {
+    padding: 0.75rem 0;
+  }
+  
+  .footer-container {
+    gap: 1rem;
+  }
+  
+  .footer-social-button {
+    width: 2rem;
+    height: 2rem;
+    min-height: 40px;
+    min-width: 40px;
+  }
+  
+  .footer-social-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .footer-social-button {
+    border: 2px solid var(--white);
+  }
+  
+  .footer-social-button:focus {
+    outline-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .footer-social-button {
+    transition: none;
+  }
+  
+  .footer-social-button:hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .footer {
+    display: none;
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function RecipeCard({ recipe, user }) {
+function RecipeCard({ recipe, user, showRemoveFromFavorites, onRemoveFromFavorites }) {
   const navigate = useNavigate();
 
   const handleAddToFavorites = async (e) => {
@@ -22,18 +22,46 @@ function RecipeCard({ recipe, user }) {
     }
   };
 
+  const handleRemoveFromFavorites = async (e) => {
+    e.preventDefault();
+    if (onRemoveFromFavorites) {
+      onRemoveFromFavorites();
+    }
+  };
+
   return (
     <div className="recipe-card">
-      <img src={recipe.image} alt={recipe.title} />
+      <img 
+        src={recipe.image} 
+        alt={recipe.title} 
+        className="recipe-card-image"
+      />
       <div className="recipe-card-content">
-        <h3>{recipe.title}</h3>
+        <h3 className="recipe-card-title">{recipe.title}</h3>
+        {recipe.description && (
+          <p className="recipe-card-description">{recipe.description}</p>
+        )}
         <div className="recipe-card-actions">
-          <Link to={`/recipe/${recipe.id}`} className="btn btn-sm">
-            View Recipe
+          <Link 
+            to={`/recipe/${recipe.id}`} 
+            className="recipe-card-button recipe-card-button--primary"
+          >
+            View Details
           </Link>
-          {user && (
-            <button onClick={handleAddToFavorites} className="btn btn-sm btn-primary">
+          {user && !showRemoveFromFavorites && (
+            <button 
+              onClick={handleAddToFavorites} 
+              className="recipe-card-button recipe-card-button--secondary"
+            >
               Add to Favorites
+            </button>
+          )}
+          {showRemoveFromFavorites && (
+            <button 
+              onClick={handleRemoveFromFavorites} 
+              className="recipe-card-button recipe-card-button--danger"
+            >
+              Remove
             </button>
           )}
         </div>

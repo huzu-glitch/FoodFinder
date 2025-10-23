@@ -22,36 +22,38 @@ function Login({ setUser }) {
   };
 
   return (
-    <div className="container">
-      <div className="auth-form">
-        <h2>Login</h2>
-        {message && <p className="error-message">{message}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="form-input"
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">Login</button>
-        </form>
-        <p className="auth-link">
-          Don't have an account? <Link to="/register">Register here</Link>
-        </p>
+    <div className="page-container">
+      <div className="container">
+        <div className="auth-form">
+          <h2>Login</h2>
+          {message && <p className="error-message">{message}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Username:</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="form-input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="form-input"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">Login</button>
+          </form>
+          <p className="auth-link">
+            Don't have an account? <Link to="/register">Register here</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
